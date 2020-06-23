@@ -182,6 +182,30 @@
           </execution>
         </executions>
       </plugin>
+      <!--Plugin used to replace version on several files -->
+      <plugin>
+        <groupId>com.google.code.maven-replacer-plugin</groupId>
+        <artifactId>replacer</artifactId>
+        <version>1.5.3</version>
+        <executions>
+          <execution>
+            <id>replace-base-url</id>
+            <phase>package</phase>
+            <goals>
+              <goal>replace</goal>
+            </goals>
+            <configuration>
+              <file>${project.basedir}/dist/assets/config.json</file>
+              <replacements>
+                <replacement>
+                  <token>"baseURL": "(.*)"</token>
+                  <value>"baseURL": "http://localhost:8083/portal/environments/DEFAULT/"</value>
+                </replacement>
+              </replacements>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 </project>
